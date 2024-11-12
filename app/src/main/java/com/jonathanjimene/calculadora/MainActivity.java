@@ -56,12 +56,12 @@ public class MainActivity extends AppCompatActivity {
         Button buttonPunto = findViewById(R.id.buttonPunto);
         Button buttonCalcular = findViewById(R.id.buttonCalcular);
 
-        View.OnClickListener numberListener = new View.OnClickListener() { // <-- Este código está bien, pero necesitas asegurarte de que esté asignado a todos los botones correctamente.
+        View.OnClickListener numberListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String number = ((Button) v).getText().toString(); // Obtiene el texto del botón.
-                currentInput += number; // Agrega el número a la entrada actual.
-                textViewResult.setText(currentInput); // Muestra la entrada en la pantalla.
+                String number = ((Button) v).getText().toString();
+                currentInput += number;
+                textViewResult.setText(currentInput);
             }
         };
 
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         button9.setOnClickListener(numberListener);
         button0.setOnClickListener(numberListener);
 
-        // Botón punto (.) - Agregar un punto si no se ha agregado antes
         buttonPunto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,16 +86,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Botones de operación (+, -, *, /)
+
         View.OnClickListener operatorListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String operation = ((Button) v).getText().toString();
                 if (!currentInput.isEmpty()) {
-                    valor1 = Double.parseDouble(currentInput);  // Guardamos el primer valor
-                    operador = operation;  // Guardamos el operador
-                    currentInput = "";  // Limpiamos la entrada para el siguiente número
-                    textViewResult.setText("");  // Limpiamos la pantalla
+                    valor1 = Double.parseDouble(currentInput);
+                    operador = operation;
+                    currentInput = "";
+                    textViewResult.setText("");
                 }
             }
         };
@@ -106,12 +105,11 @@ public class MainActivity extends AppCompatActivity {
         buttonMultiplicar.setOnClickListener(operatorListener);
         buttonDivision.setOnClickListener(operatorListener);
 
-        // Botón de igual (=) para calcular el resultado
         buttonCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!currentInput.isEmpty() && !operador.isEmpty()) {
-                    valor2 = Double.parseDouble(currentInput);  // Guardamos el segundo valor
+                    valor2 = Double.parseDouble(currentInput);
 
                     double result = 0;
                     switch (operador) {
@@ -134,15 +132,14 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
 
-                    // Mostramos el resultado en la pantalla
+
                     textViewResult.setText(String.valueOf(result));
-                    currentInput = String.valueOf(result);  // Guardamos el resultado para futuras operaciones
-                    operador = "";  // Limpiamos el operador
+                    currentInput = String.valueOf(result);
+                    operador = "";
                 }
             }
         });
 
-        // Botón "AC" - Limpiar todo
         buttonAC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Botón "C" - Limpiar la entrada
+
         buttonC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
